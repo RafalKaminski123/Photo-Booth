@@ -1,18 +1,97 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+# =============== #
+# Unity generated #
+# =============== #
+/[Ll]ibrary/
+/[Aa]ssets/AssetStoreTools
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]nityGenerated/
 
-# Other files and folders
-.settings/
+/Assets/AssetStoreTools*
+/UnityPackageManager
 
-# Executables
-*.swf
-*.air
-*.ipa
+# ===================================== #
+# Visual Studio / MonoDevelop generated #
+# ===================================== #
+/.consulo/
+/.vs/
+/ExportedObj/
+*.svd
+*.userprefs
+*.csproj
+*.pidb
+*.suo
+*.sln
+*.user
+*.unityproj
+*.booproj
+*.tmp
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.vscode
+
+# ====================== #
+# Gradle cache directory #
+# ====================== #
+/.gradle/
+
+# ============================= #
+# Unity3D generated meta files  #
+# ============================= #
+*.pidb.meta
+*.pdb.meta
+*.mdb.meta
+
+# ======================================== #
+# Unity3D generated file on crash reports  #
+# ======================================== #
+sysinfo.txt
+*.stackdump
+
+# ======================================== #
+# Crashlytics generated file               #
+# ======================================== #
+crashlytics-build.properties
+
+# ==================== #
+# Builds               #
+# ==================== #
 *.apk
+*.unitypackage
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+# ============ #
+# OS generated #
+# ============ #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+[Tt]humbs.db
+[Dd]esktop.ini
+
+# =============== #
+#      Other      #
+# =============== #
+*.blend1
+*.orig
+*.orig.meta
+*.blend1.meta
+
+# =============== #
+#    Whiteboard   #
+# =============== #
+Photo-Booth.rar
+Photo-Booth.7z
+
+
+# =============== #
+#       Rider	  #
+# =============== #
+/.idea/
