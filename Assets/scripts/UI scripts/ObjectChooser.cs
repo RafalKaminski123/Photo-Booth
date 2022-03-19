@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class ObjectChooser : MonoBehaviour
 {
 
-	public GameObject addObjectButtonPrefab;
-	public GameObject container;
+	[SerializeField] GameObject addObjectButtonPrefab;
+	[SerializeField] GameObject container;
 	public string[] availableObjects;
 
 	void Start()

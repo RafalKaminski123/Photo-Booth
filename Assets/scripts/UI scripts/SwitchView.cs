@@ -7,7 +7,7 @@ public class SwitchView : MonoBehaviour
 
 	[SerializeField] GameObject MainCam;
 	[SerializeField] GameObject TopCam;
-	[SerializeField] GameObject PhotoCam;
+	
 
 	bool onEyeLevel;
 
