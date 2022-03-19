@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class ObjectChooser : MonoBehaviour
 {
-
-	[SerializeField] GameObject addObjectButtonPrefab;
-	[SerializeField] GameObject container;
+	[SerializeField] Button addObjectButtonPrefab;
+	[SerializeField] Transform container;
 	public string[] availableObjects;
 
 	void Start()
@@ -18,20 +17,11 @@ public class ObjectChooser : MonoBehaviour
 		}
 	}
 
-	
-	void Update()
-	{
-
-	}
-
 	public void MakeButton(string objectName)
 	{
-		GameObject button = (GameObject)Instantiate(addObjectButtonPrefab);
-
-		button.transform.position = container.transform.position;
-		button.GetComponent<RectTransform>().SetParent(container.transform);
-		button.GetComponent<Image>().sprite = Resources.Load<Sprite>(objectName + "-thumb");
-		button.GetComponent<Button>().onClick.AddListener(() => AddNewObjectToScene(objectName));
+		Button button = Instantiate(addObjectButtonPrefab, container.transform);
+		button.image.sprite = Resources.Load<Sprite>(objectName + "-thumb");
+		button.onClick.AddListener(() => AddNewObjectToScene(objectName));
 	}
 
 	public void AddNewObjectToScene(string objectName)

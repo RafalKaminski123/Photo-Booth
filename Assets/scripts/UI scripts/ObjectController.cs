@@ -7,6 +7,7 @@ public class ObjectController : MonoBehaviour
 
 	[SerializeField] GameObject objectTool;
 	[SerializeField] GameObject objectChooser;
+	[SerializeField] GameObject addNewButton;
 
 	public static ObjectController oc;
 
@@ -18,28 +19,14 @@ public class ObjectController : MonoBehaviour
 		oc = this;
 	}
 
-	public void RotateLeft()
+	public void Back()
 	{
-		try
-		{
-			GameObject.Find(selectedObject).transform.Rotate(0.0f, -45f, 0.0f, Space.World);
-		}
-		catch 
-		{
-			Debug.Log("Object not found!");
-		}
+		
 	}
 
-	public void RotateRight()
+	public void Forward()
 	{
-		try
-		{
-			GameObject.Find(selectedObject).transform.Rotate(0.0f, 45f, 0.0f, Space.World);
-		}
-		catch 
-		{
-			Debug.Log("Object not found!");
-		}
+		
 	}
 
 	public void RemoveObject()
@@ -79,6 +66,8 @@ public class ObjectController : MonoBehaviour
 	{
 		GameObject newObjectForScene = Instantiate(Resources.Load(objectName) as GameObject);
 		newObjectForScene.name = newObjectForScene.name + UnityEngine.Random.Range(111, 999);
+		objectTool.SetActive(true);
+		addNewButton.SetActive(false);
 	}
 
 }

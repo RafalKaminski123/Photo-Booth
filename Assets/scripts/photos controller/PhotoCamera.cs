@@ -46,7 +46,7 @@ public class PhotoCamera : MonoBehaviour
             RenderTexture.active = photoCam.targetTexture;
             photoshot.ReadPixels(new Rect(0, 0, resWidth, resHeight), 0, 0);
             byte[] bytes = photoshot.EncodeToPNG();
-            string fileName = PhotoName();
+            string fileName = InputFolder();
             System.IO.File.WriteAllBytes(fileName, bytes);
             Debug.Log("Photo Taken!");
             photoCam.gameObject.SetActive(false);
@@ -54,9 +54,9 @@ public class PhotoCamera : MonoBehaviour
         }
     }
 
-    string PhotoName()
+    string InputFolder()
     {
-        return string.Format("{0}/PhotoShots/photo {1}x{2}_{3}.png", Application.dataPath, resWidth, resHeight, System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"));
+        return string.Format("{0}/InputFolder/photo {1}x{2}_{3}.png", Application.dataPath, resWidth, resHeight, System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"));
     }
         
 

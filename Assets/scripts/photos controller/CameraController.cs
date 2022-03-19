@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public PhotoCameraOne photoCam;
+    public PhotoCamera photoCam;
 
     private void Update()
     {
