@@ -9,7 +9,7 @@ public class SwitchView : MonoBehaviour
 	[SerializeField] GameObject TopCam;
 	
 
-	bool onEyeLevel;
+	bool onMainLevel;
 
 	public static SwitchView sw;
 
@@ -20,19 +20,19 @@ public class SwitchView : MonoBehaviour
 	{
 		sw = this;
 		canMoveObject = false;
-		onEyeLevel = false;
+		onMainLevel = false;
 	}
 
 	public void toggleCam()
 	{
 
-		if (onEyeLevel)
+		if (onMainLevel)
 		{
 
 			MainCam.SetActive(true);
 			TopCam.SetActive(false);
 			canMoveObject = false;
-			onEyeLevel = false;
+			onMainLevel = false;
 			ObjectController.oc.HideObjectTool();
 
 		}
@@ -42,8 +42,8 @@ public class SwitchView : MonoBehaviour
 			MainCam.SetActive(false);
 			TopCam.SetActive(true);
 			canMoveObject = true;
-			onEyeLevel = true;
-
+			onMainLevel = true;
+			
 		}
 
 	}

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public PhotoCamera photoCam;
+    [SerializeField] PhotoCamera photoCam;
 
     private void Update()
     {
@@ -13,4 +13,14 @@ public class CameraController : MonoBehaviour
             photoCam.CallTakePhoto();
         }
     }
+    
+
+    public void TakePhoto()
+    {
+        photoCam.CallTakePhoto();
+    }
+
+
+
+
 }

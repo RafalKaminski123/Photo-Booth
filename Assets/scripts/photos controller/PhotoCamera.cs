@@ -9,10 +9,10 @@ public class PhotoCamera : MonoBehaviour
     int resWidth = 256;
     int resHeight = 256;
 
-     void Awake()
-     {
+    void Awake()
+    {
         photoCam = GetComponent<Camera>();
-        if(photoCam.targetTexture == null)
+        if (photoCam.targetTexture == null)
         {
             photoCam.targetTexture = new RenderTexture(resWidth, resHeight, 24);
         }
@@ -22,11 +22,11 @@ public class PhotoCamera : MonoBehaviour
             resHeight = photoCam.targetTexture.height;
         }
         photoCam.gameObject.SetActive(false);
-     }
+    }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             CallTakePhoto();
         }
@@ -39,7 +39,7 @@ public class PhotoCamera : MonoBehaviour
 
     private void LateUpdate()
     {
-        if(photoCam.gameObject.activeInHierarchy)
+        if (photoCam.gameObject.activeInHierarchy)
         {
             Texture2D photoshot = new Texture2D(resWidth, resHeight, TextureFormat.RGB24, false);
             photoCam.Render();
@@ -58,6 +58,6 @@ public class PhotoCamera : MonoBehaviour
     {
         return string.Format("{0}/InputFolder/photo {1}x{2}_{3}.png", Application.dataPath, resWidth, resHeight, System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"));
     }
-        
+
 
 }

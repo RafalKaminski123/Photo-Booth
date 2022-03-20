@@ -10,6 +10,7 @@ public class ObjectController : MonoBehaviour
 	[SerializeField] GameObject addNewButton;
 
 	public static ObjectController oc;
+	public PhotoCamera photoCamera;
 
 	[SerializeField] public string selectedObject;
 
@@ -21,26 +22,19 @@ public class ObjectController : MonoBehaviour
 
 	public void Back()
 	{
-		
+
 	}
 
 	public void Forward()
 	{
-		
+
 	}
 
-	public void RemoveObject()
-	{
-		try
-		{
-			HideObjectTool();
-			Destroy(GameObject.Find(selectedObject));
-		}
-		catch 
-		{
-			Debug.Log("Object not found!");
-		}
+	public void TakePhoto()
+    {
+		photoCamera.gameObject.SetActive(true);
 	}
+	
 
 	public void ShowObjectChooser()
 	{
