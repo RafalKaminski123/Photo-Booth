@@ -4,54 +4,58 @@ using UnityEngine;
 
 public class ObjectController : MonoBehaviour
 {
-
 	[SerializeField] GameObject objectTool;
-	[SerializeField] GameObject objectChooser;
+	[SerializeField] ObjectChooser objectChooser;
 	[SerializeField] GameObject addNewButton;
-	[SerializeField] GameObject objectsToDestroy;
 
+	private Dictionary<string, GameObject> instantiatedObjects = new Dictionary<string, GameObject>();
 	public static ObjectController oc;
 	public PhotoCamera photoCamera;
 	public bool activetime;
 
-	[SerializeField] public string selectedObject;
+	[SerializeField]
+	private GameObject selectedObject;
+	private int selectedObjectIndex = -1;
 
 	void Start()
 	{
-		
 		oc = this;
 	}
 
 	public void Back()
 	{
-		if(activetime == true)
-        {
-			objectsToDestroy.SetActive(false);
-        }
+		var availableObjects = objectChooser.availableObjects;
+		var targetIndex = --selectedObjectIndex;
+		if (targetIndex == -1)
+			targetIndex = availableObjects.Length - 1;
 
-
-		Debug.Log("Gone!");
+		SwapObjects(availableObjects[targetIndex], targetIndex);
 	}
 
 	public void Forward()
 	{
+		var availableObjects = objectChooser.availableObjects;
+		var targetIndex = ++selectedObjectIndex;
+		if (targetIndex == availableObjects.Length)
+			targetIndex = 0;
 
+		SwapObjects(availableObjects[targetIndex], targetIndex);
 	}
 
 	public void TakePhoto()
-    {
+	{
 		photoCamera.gameObject.SetActive(true);
 	}
-	
+
 
 	public void ShowObjectChooser()
 	{
-		objectChooser.SetActive(true);
+		objectChooser.gameObject.SetActive(true);
 	}
 
 	public void HideObjectChooser()
 	{
-		objectChooser.SetActive(false);
+		objectChooser.gameObject.SetActive(false);
 	}
 
 	public void ShowObjectTool()
@@ -64,13 +68,33 @@ public class ObjectController : MonoBehaviour
 		objectTool.SetActive(false);
 	}
 
-	public void AddObjectToScene(string objectName)
+	public void AddObjectToScene(string objectName, int index)
 	{
-		GameObject newObjectForScene = Instantiate(Resources.Load(objectName) as GameObject);
-		newObjectForScene.name = newObjectForScene.name + UnityEngine.Random.Range(111, 999);
+		SwapObjects(objectName, index);
 		objectTool.SetActive(true);
 		addNewButton.SetActive(false);
 	}
 
-}
+	private void SwapObjects(string objectName, int index)
+	{
+		if (selectedObject != null)
+			selectedObject.gameObject.SetActive(false);
 
+		var obj = InstantiateNewObject(objectName);
+		selectedObject = obj;
+		selectedObjectIndex = index;
+		selectedObject.gameObject.SetActive(true);
+	}
+
+	private GameObject InstantiateNewObject(string objectName)
+	{
+		if (!instantiatedObjects.TryGetValue(objectName, out GameObject newObjectForScene))
+		{
+			newObjectForScene = Instantiate(Resources.Load("Input/" + objectName) as GameObject);
+			newObjectForScene.name = newObjectForScene.name;
+			instantiatedObjects.Add(objectName, newObjectForScene);
+		}
+
+		return newObjectForScene;
+	}
+}

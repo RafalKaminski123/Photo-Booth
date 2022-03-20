@@ -13,22 +13,22 @@ public class ObjectChooser : MonoBehaviour
 	{
 		for (int i = 0; i < availableObjects.Length; i++)
 		{
-			MakeButton(availableObjects[i]);
+			MakeButton(availableObjects[i], i);
 		}
 	}
 
-	public void MakeButton(string objectName)
+	public void MakeButton(string objectName, int index)
 	{
 		Button button = Instantiate(addObjectButtonPrefab, container.transform);
-		button.image.sprite = Resources.Load<Sprite>(objectName + "-thumb");
-		button.onClick.AddListener(() => AddNewObjectToScene(objectName));
+		button.image.sprite = Resources.Load<Sprite>("Input/"+objectName + "-thumb");
+		button.onClick.AddListener(() => AddNewObjectToScene(objectName, index));
 	}
 
-	public void AddNewObjectToScene(string objectName)
+	public void AddNewObjectToScene(string objectName, int index)
 	{
 		Debug.Log("Adding " + objectName + " to scene.");
 		ObjectController.oc.HideObjectChooser();
-		ObjectController.oc.AddObjectToScene(objectName);
+		ObjectController.oc.AddObjectToScene(objectName, index);
 
 	}
 }

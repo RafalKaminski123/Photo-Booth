@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class PhotoCamera : MonoBehaviour
 {
+    private Camera mainCamera;
     Camera photoCam;
     int resWidth = 256;
     int resHeight = 256;
@@ -12,6 +13,7 @@ public class PhotoCamera : MonoBehaviour
     void Awake()
     {
         photoCam = GetComponent<Camera>();
+        mainCamera = Camera.main;
         if (photoCam.targetTexture == null)
         {
             photoCam.targetTexture = new RenderTexture(resWidth, resHeight, 24);
@@ -34,6 +36,7 @@ public class PhotoCamera : MonoBehaviour
 
     public void CallTakePhoto()
     {
+        photoCam.orthographicSize = mainCamera.orthographicSize;
         photoCam.gameObject.SetActive(true);
     }
 
@@ -46,7 +49,7 @@ public class PhotoCamera : MonoBehaviour
             RenderTexture.active = photoCam.targetTexture;
             photoshot.ReadPixels(new Rect(0, 0, resWidth, resHeight), 0, 0);
             byte[] bytes = photoshot.EncodeToPNG();
-            string fileName = InputFolder();
+            string fileName = Output();
             System.IO.File.WriteAllBytes(fileName, bytes);
             Debug.Log("Photo Taken!");
             photoCam.gameObject.SetActive(false);
@@ -54,9 +57,9 @@ public class PhotoCamera : MonoBehaviour
         }
     }
 
-    string InputFolder()
+    string Output()
     {
-        return string.Format("{0}/InputFolder/photo {1}x{2}_{3}.png", Application.dataPath, resWidth, resHeight, System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"));
+        return string.Format("{0}/Output/photo {1}x{2}_{3}.png", Application.dataPath, resWidth, resHeight, System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss"));
     }
 
 
